@@ -6,7 +6,7 @@ import { OAuth2Client } from 'google-auth-library';
 
 @Injectable()
 export class AuthService {
-  private googleClientId = process.env.GOOGLE_CLIENT_ID; // Replace with your Google client ID
+  private googleClientId = process.env.GOOGLE_CLIENT_ID;
 
   constructor(
     private jwtService: JwtService,
