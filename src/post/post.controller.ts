@@ -11,9 +11,9 @@ import {
 import { PostService } from './post.service';
 import { CreatePostDto } from './dto/create-post.dto';
 import { UpdatePostDto } from './dto/update-post.dto';
-import { JwtAuthGuard } from 'src/guard/jwt-auth.guard';
+import { JwtAuthGuard } from '../guard/jwt-auth.guard';
 import { ObjectId } from 'typeorm';
-import { Roles } from 'src/guard/roles.decorator';
+import { Roles } from '../guard/roles.decorator';
 
 @Controller('posts')
 export class PostController {

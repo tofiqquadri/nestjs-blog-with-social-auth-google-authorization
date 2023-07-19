@@ -1,4 +1,4 @@
-import { BasePermission } from 'src/base-permission/base-permission.entity';
+import { BasePermission } from '../base-permission/base-permission.entity';
 import { Entity, Column, ObjectIdColumn, ObjectId } from 'typeorm';
 
 @Entity()

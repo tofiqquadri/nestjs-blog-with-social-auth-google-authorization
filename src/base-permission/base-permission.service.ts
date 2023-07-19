@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { BasePermission } from './base-permission.entity';
 import { MongoRepository } from 'typeorm';
-import { BasePermissionType } from 'src/constant/base-permissions';
+import { BasePermissionType } from '../constant/base-permissions';
 
 @Injectable()
 export class BasePermissionService {

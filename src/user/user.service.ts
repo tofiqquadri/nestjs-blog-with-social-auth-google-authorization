@@ -2,12 +2,12 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { SocialUser } from 'angularx-social-login';
 import { User } from './user.entity';
-import { BasePermissionService } from 'src/base-permission/base-permission.service';
+import { BasePermissionService } from '../base-permission/base-permission.service';
 import { MongoRepository, ObjectId } from 'typeorm';
 import {
   BasePermissionType,
   NEW_USER_BASE_PERMISSIONS,
-} from 'src/constant/base-permissions';
+} from '../constant/base-permissions';
 
 @Injectable()
 export class UserService {
