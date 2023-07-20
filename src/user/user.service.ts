@@ -25,6 +25,10 @@ export class UserService {
     return this.userRepository.find();
   }
 
+  find(where: any) {
+    return this.userRepository.findOneBy({ ...where });
+  }
+
   findOneById(id: ObjectId) {
     return this.userRepository.findOneBy({ _id: id });
   }

@@ -5,12 +5,14 @@ import { ObjectId as MongoObjectId } from 'mongodb';
 import { Post } from './post.entity';
 import { CreatePostDto } from './dto/create-post.dto';
 import { UpdatePostDto } from './dto/update-post.dto';
+import { UserService } from 'src/user/user.service';
 
 @Injectable()
 export class PostService {
   constructor(
     @InjectRepository(Post)
     private postRepository: MongoRepository<Post>,
+    private userService: UserService,
   ) {}
 
   async findAll(): Promise<Post[]> {
@@ -23,7 +25,9 @@ export class PostService {
     return post;
   }
 
-  async create(createPostDto: CreatePostDto): Promise<Post> {
+  async create(createPostDto: CreatePostDto, user: any): Promise<Post> {
+    const author = await this.userService.find({ email: user.email });
+    createPostDto.author = author;   
     const post = this.postRepository.create(createPostDto);
     return this.postRepository.save(post);
   }

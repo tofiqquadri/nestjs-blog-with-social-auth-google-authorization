@@ -7,6 +7,7 @@ import {
   Param,
   Delete,
   UseGuards,
+  Req,
 } from '@nestjs/common';
 import { PostService } from './post.service';
 import { CreatePostDto } from './dto/create-post.dto';
@@ -14,6 +15,7 @@ import { UpdatePostDto } from './dto/update-post.dto';
 import { JwtAuthGuard } from '../guard/jwt-auth.guard';
 import { ObjectId } from 'typeorm';
 import { Roles } from '../guard/roles.decorator';
+import { Request } from 'express';
 
 @Controller('posts')
 export class PostController {
@@ -32,8 +34,8 @@ export class PostController {
   @Post()
   @UseGuards(JwtAuthGuard)
   @Roles('CREATE_POST')
-  async create(@Body() createPostDto: CreatePostDto) {
-    return this.postService.create(createPostDto);
+  async create(@Body() createPostDto: CreatePostDto, @Req() req: Request) {
+    return this.postService.create(createPostDto, req.user);
   }
 
   @Put(':id')
