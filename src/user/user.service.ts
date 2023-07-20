@@ -38,8 +38,6 @@ export class UserService {
   }
 
   async findOrCreateUser(socialUser: SocialUser): Promise<User> {
-    console.log(socialUser);
-
     const email = socialUser.email;
     let user = await this.userRepository.findOneBy({ email: email });
 
