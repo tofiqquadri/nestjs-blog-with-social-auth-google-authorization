@@ -11,7 +11,9 @@ export class BasePermissionService {
     private basePermissionRepository: MongoRepository<BasePermission>,
   ) {}
 
-  async findOrCreateBasePermission(name: BasePermissionType): Promise<BasePermission> {
+  async findOrCreateBasePermission(
+    name: BasePermissionType,
+  ): Promise<BasePermission> {
     let basePermission = await this.basePermissionRepository.findOneBy({
       name,
     });
@@ -20,9 +22,7 @@ export class BasePermissionService {
       basePermission = new BasePermission();
       basePermission.name = name;
 
-      console.log('CREATED BasePermission');
       basePermission = await this.basePermissionRepository.save(basePermission);
-      console.log('SAVED BasePermission');
     }
 
     return basePermission;

@@ -19,7 +19,6 @@ export class PostService {
 
   async findOneById(id: ObjectId): Promise<Post> {
     id = new MongoObjectId(id);
-
     const post = await this.postRepository.findOneByOrFail({ _id: id });
     return post;
   }
@@ -30,6 +29,8 @@ export class PostService {
   }
 
   async update(id: any, updatePostDto: UpdatePostDto): Promise<Post> {
+    id = new MongoObjectId(id);
+
     const post = await this.postRepository.findOne(id);
     if (!post) {
       throw new Error('Post not found.');
@@ -39,6 +40,7 @@ export class PostService {
   }
 
   async remove(id: any): Promise<void> {
+    id = new MongoObjectId(id);
     await this.postRepository.delete(id);
   }
 }
