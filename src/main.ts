@@ -6,6 +6,7 @@ async function bootstrap() {
   app.enableCors({
     origin: [
       '*',
+      'https://angular-blog-with-social-authentication-authorization.vercel.app',
       'http://localhost:3000',
       'http://localhost:4200',
       'http://localhost:4000',
