@@ -23,7 +23,14 @@ export class PostController {
 
   @Get()
   async findAll() {
-    return this.postService.findAll();
+    return this.postService.findAll(null);
+  }
+
+  @Get('admin')
+  @UseGuards(JwtAuthGuard)
+  @Roles('CREATE_POST', 'DELETE_POST', 'UPDATE_POST')
+  async findAllAuthorPost(@Req() req: Request) {
+    return this.postService.findAll(req.user);
   }
 
   @Get(':id')

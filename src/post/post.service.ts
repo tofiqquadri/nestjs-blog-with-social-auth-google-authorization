@@ -15,7 +15,11 @@ export class PostService {
     private userService: UserService,
   ) {}
 
-  async findAll(): Promise<Post[]> {
+  async findAll(author: any): Promise<Post[]> {
+    if (author) {
+      const user = await this.userService.find({ email: author.email });
+      return this.postRepository.find({ author: user });
+    }
     return this.postRepository.find();
   }
 
@@ -27,7 +31,7 @@ export class PostService {
 
   async create(createPostDto: CreatePostDto, user: any): Promise<Post> {
     const author = await this.userService.find({ email: user.email });
-    createPostDto.author = author;   
+    createPostDto.author = author;
     const post = this.postRepository.create(createPostDto);
     return this.postRepository.save(post);
   }
